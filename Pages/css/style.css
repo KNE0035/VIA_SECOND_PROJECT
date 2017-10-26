@@ -12,10 +12,10 @@ ul li {
     list-style: none;
 }
 
-body{
-    background-image: url("images/background.jpg");
+.bg-cover{
+    background-image: url("images/backgraound2.jpg");
     background-attachment: fixed;
-    background-size: cover;
+    background-size: 100% 900px;
     background-repeat: no-repeat;
 }
 
@@ -42,7 +42,7 @@ body{
 }
 
 #logo span{
-    color: crimson;
+    color: #fec901;
 }
 
 #navigation{
@@ -66,7 +66,7 @@ body{
 
 #slider{
     height: 535px;
-    background-color: crimson;
+    background-color: #fec901;
 }
 
 #content{
