@@ -441,3 +441,22 @@ input[type="submit"], input[type="reset"], input[type="button"], button, .button
 }
 
 
+#navigation li { position: relative }
+
+#navigation li:hover ul { display:block; }
+
+#navigation ul { display:none; width:150px; position:absolute; left:0; background:#222; z-index: 1000; margin-left: 30px }
+
+#navigation li a { display:block; color: #999; text-decoration:none;}
+
+#navigation li ul li { height:auto; position:relative; list-style-type:none; border-top: solid 1px;
+    clear: both;}
+
+#navigation li ul li a:hover { color: #e1e1e1 !important; text-decoration: none}
+
+#navigation li ul li a { color: white !important; text-decoration: none; margin-left: 15px;}
+
+.inputInvalid {
+    border: red 1px solid !important;
+}
+
