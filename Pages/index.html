@@ -3,12 +3,51 @@
 <head>
     <title>VIA_SECOND_PROJECT</title>
     <meta charset="UTF-8">
-    <meta name="VIS_SECOND_PROJECT" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/2e60d51624.js"></script>
-    <script src="scripts/pageController.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        $(document).ready(function () {
+            var counter = 0;
+            var currentDateSeconds = Math.floor(new Date().getTime() / 1000);
+            var newYearDateSeconds = Math.floor(new Date(new Date().getFullYear() + 1, 1, 1, 0, 0, 0, 0).getTime() / 1000);
+            $("#newYearCounter").text(newYearDateSeconds - currentDateSeconds);
+
+            var timer = setInterval(function() {
+               $("#newYearCounter").text(newYearDateSeconds - currentDateSeconds);
+                currentDateSeconds = Math.floor(new Date().getTime() / 1000);
+            }, 1000)
+
+            var slider = $("#highlight");
+
+            $("#right-arrow").click(function () {
+                var currentSlide = $(".slide.active");
+                var nextSlide = currentSlide.next();
+
+                currentSlide.fadeOut(500).removeClass("active");
+
+                if(nextSlide.hasClass("slide") == 0){
+                    $(".slide").first().fadeIn(500).addClass("active");
+                } else {
+                    nextSlide.fadeIn(500).addClass("active");
+                }
+            })
+
+            $("#left-arrow").click(function () {
+                var currentSlide = $(".slide.active");
+                var prevSlide = currentSlide.prev();
+
+                currentSlide.fadeOut(500).removeClass("active");
+                prevSlide.fadeIn(500).addClass("active");
+
+                if(prevSlide.hasClass("slide") == 0){
+                    $(".slide").last().fadeIn(500).addClass("active");
+                }
+            })
+        });
+    </script>
 </head>
 
 <body class="bg-cover">
@@ -16,7 +55,6 @@
 
     <div id="header">
         <a href="index.html" class="logo">Auto<span>mobiles</span></a>
-
         <ul id="navigation" style="position: relative">
             <li><a href="index.html">Home</a></li>
             <li>
@@ -30,26 +68,52 @@
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-
     </div>
 
     <div id="highlight">
-        <div class="welcomer">
-            <h2>
-                If you like cars
+        <div class="slide active">
+            <div class="welcomer">
+                <h2>
+                    If you like cars
+                    <br>
+                    this is best place for you
+                </h2>
                 <br>
-                this is best place for you
-            </h2>
-            <br>
-            <p>
-                You can find a lot of things about cars including interesting car topics or portfolio here.
-            </p>
-            <a href="index.html">Lets start</a>
+                <p>
+                    You can find a lot of things about cars including interesting car topics or portfolio here.
+                </p>
+                <a href="index.html">Lets start</a>
+            </div>
+
+            <div class="welcomeImmage">
+                <img src="css/images/carOnMobile.png" width="225">
+            </div>
         </div>
 
-        <div class="welcomeImmage">
-            <img src="css/images/carOnMobile.png" width="225">
+        <div class="slide">
+            <div class="welcomer">
+                <h2>
+                    We welcome you
+                    <br>
+                    on our cars page
+                </h2>
+                <br>
+                <p>
+                    You can visit portfolio, interesting topics about cars and contact us too.
+                </p>
+                <a href="index.html">Lets start</a>
+            </div>
+
+            <div class="welcomeImmage">
+                <img src="css/images/carOnMobile.png" width="225">
+            </div>
         </div>
+
+        <div>
+            <p id="left-arrow"><</p>
+            <p id="right-arrow">></p>
+        </div>
+
     </div>
 
     <div id="content">
@@ -117,6 +181,9 @@
             </ul>
         </div>
 
+        <p style="text-align: center; font-weight: bold; margin-top: 50px">
+            Remaining Seconds to release: &nbsp;<span id="newYearCounter"></span>
+        </p>
     </div>
 
     <div id="footer">

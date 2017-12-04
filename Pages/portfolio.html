@@ -8,10 +8,32 @@
     <script src="https://use.fontawesome.com/2e60d51624.js"></script>
     <script src="scripts/pageController.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
+
+    <script>
+        $(document).ready(function () {
+            $("#portfolio img").click(function (event) {
+                var imgSrc = event.target.getAttribute("src");
+                var photoDetail = $("#photoDetail img");
+                photoDetail.attr('src', imgSrc);
+                $("#photoDetail").show();
+            });
+
+            $("#closePhotoDetail").click(function (event) {
+                $("#photoDetail").hide();
+            });
+        });
+    </script>
+
 </head>
 
 <body class="bg-cover">
 <div id="body-wrapper">
+
+    <div id="photoDetail" style="display: none">
+        <img width="1000px" height="1000px">
+        <i id="closePhotoDetail" class="fa fa-times" aria-hidden="true"></i>
+    </div>
 
     <div id="header">
         <a href="index.html" class="logo">Auto<span>mobiles</span></a>
@@ -46,13 +68,13 @@
                     <img src="css/images/contentCar.jpg">
                 </li>
                 <li>
-                    <img src="css/images/contentCar.jpg">
+                    <img src="css/images/car.jpg">
                 </li>
                 <li>
                     <img src="css/images/contentCar.jpg">
                 </li>
                 <li>
-                    <img src="css/images/contentCar.jpg">
+                    <img src="css/images/car.jpg">
                 </li>
                 <li>
                     <img src="css/images/contentCar.jpg">
