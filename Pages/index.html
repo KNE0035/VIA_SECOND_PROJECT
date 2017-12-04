@@ -22,29 +22,42 @@
 
             var slider = $("#highlight");
 
-            $("#right-arrow").click(function () {
+
+            var sliderTimer = setInterval(function () {
+                slideTo('right');
+            }, 4000);
+
+            function slideTo(direction) {
                 var currentSlide = $(".slide.active");
-                var nextSlide = currentSlide.next();
+                var nextOrPrevSlide = direction === 'right' ? currentSlide.next() : currentSlide.prev();
 
                 currentSlide.fadeOut(500).removeClass("active");
+                nextOrPrevSlide.fadeIn(500).addClass("active");
 
-                if(nextSlide.hasClass("slide") == 0){
-                    $(".slide").first().fadeIn(500).addClass("active");
-                } else {
-                    nextSlide.fadeIn(500).addClass("active");
+                if (nextOrPrevSlide.hasClass("slide") == 0) {
+                    if(direction === 'right'){
+                        $(".slide").first().fadeIn(500).addClass("active");
+                    } else {
+                        $(".slide").last().fadeIn(500).addClass("active");
+                    }
+
                 }
+            }
+
+            $("#right-arrow").click(function () {
+                slideTo('right');
+                clearInterval(sliderTimer);
+                sliderTimer = setInterval(function () {
+                    slideTo('right');
+                }, 4000);
             })
 
             $("#left-arrow").click(function () {
-                var currentSlide = $(".slide.active");
-                var prevSlide = currentSlide.prev();
-
-                currentSlide.fadeOut(500).removeClass("active");
-                prevSlide.fadeIn(500).addClass("active");
-
-                if(prevSlide.hasClass("slide") == 0){
-                    $(".slide").last().fadeIn(500).addClass("active");
-                }
+                slideTo('left');
+                clearInterval(sliderTimer);
+                sliderTimer = setInterval(function () {
+                    slideTo('right');
+                }, 4000);
             })
         });
     </script>
